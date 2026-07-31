@@ -20,14 +20,21 @@ RUN apt install -y --no-install-recommends \
     openssh-server net-tools iproute2 curl wget git vim  \
     unzip zip tar  ca-certificates software-properties-common \
     # Xfce桌面全套
-    xfce4 xfce4-goodies xorg dbus-x11 firefox-esr gnome-terminal thunar \
+    xfce4 xfce4-goodies xorg dbus-x11 firefox gnome-terminal thunar \
     # VNC服务
     tigervnc-standalone-server tigervnc-viewer \
-    # 中文输入法fcitx5 + 拼音
-    fcitx5 fcitx5-chinese-addons fcitx5-configtool fcitx5-gtk fcitx5-qt \
-    # 中文字体
-    fonts-wqy-zenhei fonts-wqy-microhei fonts-noto-cjk
 
+# Fcitx5 全套输入法（严格匹配apt search出来的真实包名）
+RUN apt install -y --no-install-recommends \
+    fcitx5 \
+    fcitx5-modules \
+    fcitx5-chinese-addons \
+    fcitx5-pinyin \
+    fcitx5-config-qt \
+    fcitx5-frontend-gtk3 \
+    fcitx5-module-cloudpinyin \
+    fonts-wqy-zenhei fonts-wqy-microhei fonts-noto-cjk
+    
 # 清理缓存缩小镜像
 RUN apt autoremove -y && apt clean && rm -rf /var/lib/apt/lists/*
 
