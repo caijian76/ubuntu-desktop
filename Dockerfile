@@ -22,7 +22,7 @@ RUN apt install -y --no-install-recommends \
     # Xfce桌面全套
     xfce4 xfce4-goodies xorg dbus-x11 firefox gnome-terminal thunar \
     # VNC服务
-    tigervnc-standalone-server tigervnc-viewer \
+    tigervnc-standalone-server tigervnc-viewer 
 
 # Fcitx5 全套输入法（严格匹配apt search出来的真实包名）
 RUN apt install -y --no-install-recommends \
