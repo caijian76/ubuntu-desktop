@@ -60,15 +60,8 @@ RUN echo 'export GTK_IM_MODULE=fcitx5' >> /etc/profile && \
     echo 'export SDL_IM_MODULE=fcitx5' >> /etc/profile
 
 # 统一启动脚本：sshd + fcitx5 + vnc
-RUN echo '#!/bin/bash' > /root/start_all.sh && \
-    echo 'source /etc/profile' >> /root/start_all.sh && \
-    echo '/usr/sbin/sshd -D &' >> /root/start_all.sh && \
-    echo 'vncserver -kill :1 >/dev/null 2>&1' >> /root/start_all.sh && \
-    echo 'dbus-daemon --session --fork' >> /root/start_all.sh && \
-    echo 'fcitx5 -d &' >> /root/start_all.sh && \
-    echo 'vncserver :1 -geometry 1920x1080 -depth 24 -localhost no' >> /root/start_all.sh && \
-    echo 'tail -f /dev/null' >> /root/start_all.sh && \
-    chmod +x /root/start_all.sh
+ADD start_all.sh /root
+RUN chmod +x /root/start_all.sh
 
 EXPOSE 22 5901
 CMD ["/root/start_all.sh"]
