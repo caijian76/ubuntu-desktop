@@ -23,7 +23,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone &
 # 2. Xfce桌面 + Tigervnc（先装VNC，后面才能用vncpasswd）
 RUN apt install -y --no-install-recommends \
     xfce4 xfce4-goodies xorg dbus-x11 gnome-terminal thunar \
-    tigervnc-standalone-server
+    tigervnc-standalone-server tigervnc-tools
 
 # 3. 浏览器 Firefox
 RUN apt install -y --no-install-recommends firefox
