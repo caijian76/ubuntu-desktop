@@ -1,6 +1,6 @@
 #!/bin/sh
 mkdir -p /root/.vnc
-[ -f /root/.vnc/passwd ]||echo ${VNC_PASSWORD:-123456}|vncpasswd -f>/root/.vnc/passwd
+[ -f /root/.vnc/passwd ]||echo ${VNC_PASSWORD:-Edu@9527}|vncpasswd -f>/root/.vnc/passwd
 chmod 600 /root/.vnc/passwd
 cat >/root/.vnc/xstartup <<'EOF'
 #!/bin/sh
