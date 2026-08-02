@@ -28,7 +28,10 @@ RUN install -d -m 0755 /etc/apt/keyrings && wget -q https://packages.mozilla.org
     && apt update && apt install -y firefox
 
 # 初始化root密码，允许root登录ssh，允许密码登录ssh
-RUN echo "root:Edu@9527" | chpasswd && mkdir -p /var/run/sshd && sed -ri 's/^#?PermitRootLogin.*/PermitRootLogin yes/;s/^#?PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config
+RUN echo "root:Edu@9527" | chpasswd \
+    && mkdir -p /var/run/sshd \
+    && sed -ri 's/^#?PermitRootLogin.*/PermitRootLogin yes/;s/^#?PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config \
+    && ssh-keygen -A
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY entrypoint.sh /entrypoint.sh
