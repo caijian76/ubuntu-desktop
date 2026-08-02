@@ -1,12 +1,9 @@
 FROM docker.m.daocloud.io/library/ubuntu:22.04
 ENV DEBIAN_FRONTEND=noninteractive \
     TZ=Asia/Shanghai \
-    LANG=zh_CN.UTF-8 \
+    LANG=zh_CN.UTF-8 LANGUAGE=zh_CN:zh LC_ALL=zh_CN.UTF-8 \
     LC_ALL=zh_CN.UTF-8 \
     DISPLAY=:1 \
-    VNC_PWD=Edu@9527 \
-    ROOT_PWD=Edu@9527 \
-    LANGUAGE=zh_CN:zh LC_ALL=zh_CN.UTF-8 \
     GTK_IM_MODULE=fcitx QT_IM_MODULE=fcitx XMODIFIERS=@im=fcitx
     
 RUN apt-get update && apt upgrade -y && apt-get install -y \
@@ -31,7 +28,7 @@ RUN install -d -m 0755 /etc/apt/keyrings && wget -q https://packages.mozilla.org
     && apt update && apt install -y firefox
 
 # 初始化root密码，允许root登录ssh，允许密码登录ssh
-RUN echo "root:$ROOT_PWD" | chpasswd && mkdir -p /var/run/sshd && sed -ri 's/^#?PermitRootLogin.*/PermitRootLogin yes/;s/^#?PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config
+RUN echo "root:Edu@9527" | chpasswd && mkdir -p /var/run/sshd && sed -ri 's/^#?PermitRootLogin.*/PermitRootLogin yes/;s/^#?PasswordAuthentication.*/PasswordAuthentication yes/' /etc/ssh/sshd_config
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY entrypoint.sh /entrypoint.sh
