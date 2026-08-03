@@ -1,14 +1,10 @@
 FROM docker.m.daocloud.io/library/ubuntu:22.04
 ENV DEBIAN_FRONTEND=noninteractive \
-    TZ=Asia/Shanghai \
-    LANG=zh_CN.UTF-8 LANGUAGE=zh_CN:zh LC_ALL=zh_CN.UTF-8 \
-    LC_ALL=zh_CN.UTF-8 \
-    DISPLAY=:1 \
-    GTK_IM_MODULE=fcitx QT_IM_MODULE=fcitx XMODIFIERS=@im=fcitx
+    TZ=Asia/Shanghai 
     
 RUN apt-get update && apt upgrade -y && apt-get install -y \
     tini supervisor sudo openssh-server dbus-x11 \
-    tzdata locales openssh-server net-tools iproute2 curl wget git vim \
+    tzdata openssh-server net-tools iproute2 iputils-ping curl wget git vim \
     unzip zip tar ca-certificates software-properties-common \
     xfce4 xfce4-goodies xfce4-terminal \
     tigervnc-standalone-server tigervnc-tools \
